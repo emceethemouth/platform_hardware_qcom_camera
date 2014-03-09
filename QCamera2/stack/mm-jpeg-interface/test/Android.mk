@@ -7,6 +7,9 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_CFLAGS := -DCAMERA_ION_HEAP_ID=ION_IOMMU_HEAP_ID
 LOCAL_CFLAGS += -Werror
+ifneq ($(filter 4.8 4.9 4.8.% 4.9.%, $(shell $(TARGET_CC) --version)),)
+LOCAL_CFLAGS += -Wno-error=unused-parameter
+endif
 LOCAL_CFLAGS += -D_ANDROID_
 LOCAL_CFLAGS += -include mm_jpeg_dbg.h
 
